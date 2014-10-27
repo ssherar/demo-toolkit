@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Demonstrator Toolkit</title>
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <script src="/static/socket.io-client/socket.io.js"></script>
+    <script src="/static/jquery/dist/jquery.min.js"></script>
+  </head>
+  <body>
+  <!--<div class="page hidden" id="admin-authenticate">
+
+  <div>-->
+
+  <div class="page" id="list-users">
+    <h1>Connected Users</h1>
+    <ul id="connected-users">
+    </ul>
+
+    <h1>Users waiting for sign off</h1>
+    <ol id="signoff-users">
+    </ol>
+  </div>
+
+  <script>
+    $(function () {
+      var socket = io("/admin");
+      var users = {};
+      var $connectedUsers = $("ul#connected-users");
+      var $signoffUsers = $("ol#signoff-users");
+
+      socket.on("user connected", function(userObj) {
+        users[userObj.user] = $("<li>").html(userObj.user);
+        if(userObj.state == 0) {
+          users[userObj.user].appendTo($connectedUsers);
+        } else if(userObj.state == 1) {
+          users[userObj.user].appendTo($signoffUsers);
+        }
+      });
+
+      socket.on("signoff requested", function(username) {
+        $ele = users[username];
+        $ele.remove();
+        $ele.appendTo($signoffUsers);
+      });
+    });
+  </script>
+
+  </body>
+</html>

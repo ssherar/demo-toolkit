@@ -1,0 +1,23 @@
+{
+  "name": "demo-toolkit",
+  "main": "index.coffee",
+  "version": "0.0.1",
+  "authors": [
+    "Sam Sherar <sbsherar@gmail.com>"
+  ],
+  "description": "Toolkit for demonstrators at Aberystwyth University",
+  "license": "MIT",
+  "homepage": "http://ssherar.github.io/demo-toolkit/",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "socket.io-client": "~1.1.0",
+    "jquery": "~2.1.1"
+  }
+}

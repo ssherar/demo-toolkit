@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-size:12pt;
+}
+
+html, body {
+  height:100%;
+}
+
+.page {
+  min-height:100%;
+  display:block;
+}
+
+.hidden {
+  display:none;
+}
+
+#entry-page {
+  background-color:#369;
+}
