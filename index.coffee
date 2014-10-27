@@ -5,7 +5,6 @@ io = require("socket.io")(http)
 path = require "path"
 
 basedir = path.resolve "#{__dirname}/../"
-console.log basedir
 
 app.use "/static", express.static("#{basedir}/bower_components")
 app.use "/js", express.static("#{basedir}/js")
@@ -42,7 +41,7 @@ students.on "connection", (socket) ->
 
   socket.on "user added", (username) ->
     console.log "user added: #{username}"
-    tmp = new Student username 
+    tmp = new Student username
     users[socket.id] = tmp
     admin.emit "user connected", tmp
 
