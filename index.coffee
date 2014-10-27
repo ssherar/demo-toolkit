@@ -2,16 +2,20 @@ express = require 'express'
 app = express()
 http = require("http").Server app
 io = require("socket.io")(http)
+path = require "path"
 
-app.use "/static", express.static("#{__dirname}/bower_components")
-app.use "/js", express.static("#{__dirname}/js")
-app.use "/css", express.static("#{__dirname}/css")
+basedir = path.resolve "#{__dirname}/../"
+console.log basedir
+
+app.use "/static", express.static("#{basedir}/bower_components")
+app.use "/js", express.static("#{basedir}/js")
+app.use "/css", express.static("#{basedir}/css")
 
 app.get "/", (req, res) ->
-  res.sendFile "#{__dirname}/templates/index.html"
+  res.sendFile "#{basedir}/templates/index.html"
 
 app.get "/admin", (req, res) ->
-  res.sendFile "#{__dirname}/templates/admin.html"
+  res.sendFile "#{basedir}/templates/admin.html"
 
 
 class Student
