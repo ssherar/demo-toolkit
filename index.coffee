@@ -37,6 +37,7 @@ students.on "connection", (socket) ->
 
   socket.on "disconnect", () ->
     console.log "user disconnected"
+    admin.emit "user disconnected", users[socket.id]
     delete users[socket.id]
 
   socket.on "user added", (username) ->

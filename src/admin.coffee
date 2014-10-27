@@ -20,7 +20,11 @@ $ () ->
     switch userObj.state
       when 0 then $ele.appendTo $connectedUsers
       when 1 then $ele.appendTo $signoffUsers
+    null
 
+  socket.on "user disconnected", (userObj) ->
+    users[userObj.user].remove()
+    delete users[userObj.user]
     null
   
   socket.on "signoff requested", (username) ->
