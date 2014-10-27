@@ -8,14 +8,19 @@
   </head>
   <body>
     <div class="page" id="entry-page">
-      Aber Username:
-      <input type="text" id="aber-username">
-      <button id="username-submit">Enter</button>
-
+      <div class="center width-50">
+        <input type="text" id="aber-username" placeholder="Aberystwyth University username" class="width-70 spread">
+        <button id="username-submit" class="width-30 spread">Enter</button>
+      </div>
     </div>
     
     <div class="page hidden" id="main-page">
-      <button id="signoff">Request to be signed off</button> 
+      <div class="width-20 pull-right">
+        <span>Hello, username | <a href="#" id="logout">logout</a></span>
+      </div>
+      <div class="center width-50">
+        <button class="spread width-50" id="signoff">Request to be signed off</button>
+      </div>
     </div>
 
   <script src="/js/main.js"></script>

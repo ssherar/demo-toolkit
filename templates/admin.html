@@ -7,18 +7,23 @@
     <script src="/static/jquery/dist/jquery.min.js"></script>
   </head>
   <body>
-  <!--<div class="page hidden" id="admin-authenticate">
+  <div class="page" id="admin-authenticate">
+    <div class="center width-50">
+      <input type="password" id="admin-password" placeholder="Password for admin" class="width-70 spread">
+      <button id="password-submit" class="width-30 spread">Enter</button>
+    </div>
+  </div>
 
-  <div>-->
+  <div class="page hidden" id="list-users">
+    <div class="width-column-third">
+      <h1>Connected Users</h1>
+      <ul id="connected-users"></ul>
+    </div>
 
-  <div class="page" id="list-users">
-    <h1>Connected Users</h1>
-    <ul id="connected-users">
-    </ul>
-
-    <h1>Users waiting for sign off</h1>
-    <ol id="signoff-users">
-    </ol>
+    <div class="width-column-third">
+      <h1>Users waiting for sign off</h1>
+      <ol id="signoff-users"></ol>
+    </div>
   </div>
   <script src="/js/admin.js"></script>
   </body>

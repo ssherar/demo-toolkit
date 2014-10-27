@@ -1,8 +1,18 @@
 $ () ->
   socket = io "/admin"
   users = {}
+  
+  $pageAuthentication = $ "div#admin-authenticate"
+  $pageUsers = $ "div#list-users"
+
+  $adminPassword = $ "input#admin-password"
+  $passwordSubmit = $ "button#password-submit"
   $connectedUsers = $ "ul#connected-users"
   $signoffUsers = $ "ol#signoff-users"
+
+  $passwordSubmit.on "click", () ->
+    $pageAuthentication.addClass "hidden"
+    $pageUsers.removeClass "hidden"
 
   socket.on "user connected", (userObj) ->
     $ele = $("<li>").html userObj.user
@@ -16,4 +26,4 @@ $ () ->
   socket.on "signoff requested", (username) ->
     $ele = users[username]
     $ele.remove()
-    $ele.appendTo "$signoffUsers"
+    $ele.appendTo $signoffUsers
