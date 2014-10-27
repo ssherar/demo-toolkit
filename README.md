@@ -14,7 +14,7 @@ Installation
 
 DTK is written in coffeescript and runs on node, so there are numerous dependancies which are needed to get running. However, with the delight (and maybe disgust) of `bower` and `npm` we can handle a lot from now:
 
-    npm install grunt-cli coffee
+    sudo npm install -g grunt-cli coffee-script
     bower install
     npm install
     grunt coffee
