@@ -27,7 +27,7 @@ describe "index.coffee", () ->
       done()
 
   it "should return true if user has authenticated correctly", (done) ->
-    name = "abc1"
+    name = "sbs1"
 
     socket.on "user authenticated", (ret) ->
       expect(ret).equal(true)
