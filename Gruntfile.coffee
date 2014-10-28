@@ -55,4 +55,5 @@ module.exports = (grunt) ->
   grunt.registerTask 'compile', ['coffee']
   grunt.registerTask 'default', ['concurrent:autoreload']
   grunt.registerTask 'test', ['mochaTest']
+  grunt.registerTask 'travis', ['concurrent:autoreload', 'mochaTest']
   null
