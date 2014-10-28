@@ -3,8 +3,10 @@ app = express()
 http = require("http").Server app
 io = require("socket.io")(http)
 path = require "path"
+fs = require "fs"
 
 basedir = path.resolve "#{__dirname}/../"
+config = JSON.parse fs.readFileSync("#{basedir}/config.json")
 
 app.use "/static", express.static("#{basedir}/bower_components")
 app.use "/js", express.static("#{basedir}/js")
@@ -17,6 +19,7 @@ app.get "/admin", (req, res) ->
   res.sendFile "#{basedir}/templates/admin.html"
 
 
+
 class Student
   constructor: (@user, @socket) ->
     @state = 0
@@ -26,7 +29,6 @@ class Student
       user: @user
       state: @state
     }
-
 
 users = {}
 
@@ -71,6 +73,6 @@ students.on "connection", (socket) ->
     userObj.state = 1
     admin.emit "signoff requested", userObj.user
 
-http.listen 3000, () ->
-  console.log("Listening on *:3000")
+http.listen config.port, () ->
+  console.log("Listening on *:#{config.port}")
 
