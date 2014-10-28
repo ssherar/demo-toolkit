@@ -27,7 +27,10 @@ To compile coffee down to JS:
 
     grunt coffee
   
-
+To run the test suite, use:
+    
+    grunt test
+    
 Contribution
 ------------
 
