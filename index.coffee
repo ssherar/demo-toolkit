@@ -15,7 +15,7 @@ app.use "/css", express.static("#{basedir}/css")
 app.get "/", (req, res) ->
   res.sendFile "#{basedir}/templates/index.html"
 
-app.get "/admin", (req, res) ->
+app.get config.adminURL, (req, res) ->
   res.sendFile "#{basedir}/templates/admin.html"
 
 
@@ -42,6 +42,9 @@ admin.on "connection", (socket) ->
   console.log "admin connected"
   for key,value of users
     admin.emit "user connected", value
+
+  socket.on "logging in", (password) ->
+    socket.emit "admin authenticated", config.adminPassword == password
 
   socket.on "user signedoff", (username) ->
     socketid = findIdForUsername username

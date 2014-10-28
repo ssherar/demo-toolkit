@@ -18,8 +18,12 @@ $ () ->
     socket.emit "user signedoff", $ele.text()
 
   $passwordSubmit.on "click", () ->
-    $pageAuthentication.addClass "hidden"
-    $pageUsers.removeClass "hidden"
+    socket.on "admin authenticated", (ret) ->
+      return unless ret == true
+      $pageAuthentication.addClass "hidden"
+      $pageUsers.removeClass "hidden"
+
+    socket.emit "logging in", $adminPassword.val()
 
   socket.on "user connected", (userObj) ->
     $ele = $("<li>").html userObj.user
