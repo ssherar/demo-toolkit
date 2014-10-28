@@ -1,5 +1,6 @@
 Demonstrator's Toolkit (DTK)
 ======================
+[![Build Status](https://travis-ci.org/ssherar/demo-toolkit.svg?branch=master)](https://travis-ci.org/ssherar/demo-toolkit)
 
 A toolkit to aide demonstrators at Aberystwyth University's CompSci department queue amongst other cool tools
 
