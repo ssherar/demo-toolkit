@@ -10,12 +10,19 @@ $ () ->
   $connectedUsers = $ "ul#connected-users"
   $signoffUsers = $ "ol#signoff-users"
 
+  moveUser = (event) ->
+    $ele = $ event.target
+    return unless $ele.parent().is $signoffUsers
+    $ele.remove()
+    $ele.appendTo $connectedUsers
+
   $passwordSubmit.on "click", () ->
     $pageAuthentication.addClass "hidden"
     $pageUsers.removeClass "hidden"
 
   socket.on "user connected", (userObj) ->
     $ele = $("<li>").html userObj.user
+    $ele.on "click", moveUser
     users[userObj.user] = $ele
     switch userObj.state
       when 0 then $ele.appendTo $connectedUsers
