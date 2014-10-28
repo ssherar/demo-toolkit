@@ -1,4 +1,6 @@
-require("chai").should()
+chai = require("chai")
+should = chai.should()
+expect = chai.expect
 clientio = require "socket.io-client"
 
 socketOptions =
@@ -20,9 +22,16 @@ describe "index.coffee", () ->
     socket.disconnect()
     done()
 
-  it "foo bars", () ->
-    1.should.equal(1)
+  it "should return if connected", () ->
+    socket.on "connect", () ->
+      done()
 
-  it "bar foos", () ->
-    2.should.equal(2)
+  it "should return true if user has authenticated correctly", (done) ->
+    name = "abc1"
+
+    socket.on "user authenticated", (ret) ->
+      expect(ret).equal(true)
+      done()
+
+    socket.emit "user added", name
   
