@@ -34,15 +34,19 @@ module.exports = (grunt) ->
         script: "bin/index.js"
         options:
           watch: ['bin']
-    concurrent:
-      options:
-        logConcurrentOutput: true
-      autoreload: ['supervisor', 'watch']
     mochaTest:
       options:
         reporter: 'spec'
         compilers: ['coffee:coffee-script/register']
       src: ["test/**/*.coffee"]
+    express:
+      myServer:
+        server: "./bin/index.js"
+    concurrent:
+      options:
+        logConcurrentOutput: true
+      autoreload: ['supervisor', 'watch']
+         
   )
 
   grunt.loadNpmTasks 'grunt-contrib-coffee'
@@ -55,5 +59,5 @@ module.exports = (grunt) ->
   grunt.registerTask 'compile', ['coffee']
   grunt.registerTask 'default', ['concurrent:autoreload']
   grunt.registerTask 'test', ['mochaTest']
-  grunt.registerTask 'travis', ['concurrent:autoreload', 'mochaTest']
+  grunt.registerTask 'travis', ['coffee', 'mochaTest']
   null

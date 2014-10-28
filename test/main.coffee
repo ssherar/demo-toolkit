@@ -2,6 +2,8 @@ chai = require("chai")
 should = chai.should()
 expect = chai.expect
 clientio = require "socket.io-client"
+server = require "../bin/index.js"
+
 
 socketOptions =
   transports: ['websocket']
