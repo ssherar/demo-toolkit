@@ -1,3 +1,7 @@
+/*
+ * Contributors: Sam Sherar, Tom Rosier.
+ */
+
 * {
   margin: 0;
   padding: 0;
@@ -92,3 +96,58 @@ button:disabled {
   padding-left:2em;
   float:left
 }
+
+#menu .pure-menu-heading {
+  border-bottom: none;
+  background-color: #369;
+}
+
+#menu {
+  width: 200px;
+  text-align: center;
+  left: 200px;
+  margin-left: -200px;
+}
+
+.userlist {
+  padding-top: 10px;
+}
+
+.header {
+  padding: 0px;
+  border-bottom: none;
+}
+
+.header-right {
+  bottom:   10px;
+  right:    10px;
+  position: fixed;
+}
+
+#layout {
+  padding-left: 200px;
+}
+
+.center-cont {
+  margin-right: auto;
+  margin-left: auto;
+  width: 325px;
+}
+
+#main-page {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+#aber-username {
+  text-align: center;
+  width: 250px;
+}
+
+#signoff {
+  width: 275px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
