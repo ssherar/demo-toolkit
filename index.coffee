@@ -43,7 +43,6 @@ admin.on "connection", (socket) ->
 
   socket.on "user signedoff", (username) ->
     socketid = findIdForUsername username
-    console.log username, socketid
     user = users[socketid]
     user.state = 0
     user.socket.emit "user signedoff", true
