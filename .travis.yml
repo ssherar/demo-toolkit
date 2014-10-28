@@ -4,3 +4,4 @@ node_js:
   
 before_script:
   - npm install -g grunt-cli
+  - cp config.json.example config.json
