@@ -1,4 +1,4 @@
-assert = require "assert"
+require("chai").should()
 clientio = require "socket.io-client"
 
 socketOptions =
@@ -21,8 +21,8 @@ describe "index.coffee", () ->
     done()
 
   it "foo bars", () ->
-    assert.equal(1,1)
+    1.should.equal(1)
 
   it "bar foos", () ->
-    assert.equal(2,2)
-    
+    2.should.equal(2)
+  
