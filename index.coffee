@@ -64,6 +64,7 @@ students.on "connection", (socket) ->
     tmp = new Student username, socket
     users[socket.id] = tmp
     admin.emit "user connected", tmp.toJSON()
+    socket.emit "user authenticated", true
 
   socket.on "signoff requested", () ->
     userObj = users[socket.id]
