@@ -13,7 +13,7 @@ $ () ->
   moveUser = (event) ->
     $ele = $ event.target
     return unless $ele.parent().is $signoffUsers
-    $ele.remove()
+    $ele.detach()
     $ele.appendTo $connectedUsers
     socket.emit "user signedoff", $ele.text()
 
@@ -37,5 +37,5 @@ $ () ->
   
   socket.on "signoff requested", (username) ->
     $ele = users[username]
-    $ele.remove()
+    $ele.detach()
     $ele.appendTo $signoffUsers
