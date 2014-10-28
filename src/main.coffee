@@ -17,4 +17,7 @@ $ () ->
     socket.emit "signoff requested", "true"
     $signoffButton.prop "disabled", true
 
+  socket.on "user signedoff", () ->
+    $signoffButton.prop "disabled", false
+
 

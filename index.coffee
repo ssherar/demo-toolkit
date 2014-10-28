@@ -18,11 +18,20 @@ app.get "/admin", (req, res) ->
 
 
 class Student
-  constructor: (@user) ->
+  constructor: (@user, @socket) ->
     @state = 0
+
+  toJSON: () ->
+    {
+      user: @user
+      state: @state
+    }
 
 
 users = {}
+
+findIdForUsername = (username) ->
+  (id for id,value of users when value.user == username )[0]
 
 admin = io.of "/admin"
 students = io.of "/students"
@@ -31,6 +40,14 @@ admin.on "connection", (socket) ->
   console.log "admin connected"
   for key,value of users
     admin.emit "user connected", value
+
+  socket.on "user signedoff", (username) ->
+    socketid = findIdForUsername username
+    console.log username, socketid
+    user = users[socketid]
+    user.state = 0
+    user.socket.emit "user signedoff", true
+
 
 students.on "connection", (socket) ->
   console.log "user connected"
@@ -42,9 +59,9 @@ students.on "connection", (socket) ->
 
   socket.on "user added", (username) ->
     console.log "user added: #{username}"
-    tmp = new Student username
+    tmp = new Student username, socket
     users[socket.id] = tmp
-    admin.emit "user connected", tmp
+    admin.emit "user connected", tmp.toJSON()
 
   socket.on "signoff requested", () ->
     userObj = users[socket.id]

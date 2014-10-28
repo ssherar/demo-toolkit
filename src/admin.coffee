@@ -15,6 +15,7 @@ $ () ->
     return unless $ele.parent().is $signoffUsers
     $ele.remove()
     $ele.appendTo $connectedUsers
+    socket.emit "user signedoff", $ele.text()
 
   $passwordSubmit.on "click", () ->
     $pageAuthentication.addClass "hidden"
