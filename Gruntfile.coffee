@@ -6,28 +6,28 @@ module.exports = (grunt) ->
         options:
           bare: true
         expand: true
-        flatten: true
-        cwd: "./"
-        src: ["src/server/index.coffee"]
+        flatten: false
+        cwd: "./src/server"
+        src: ["**/*.coffee"]
         dest: 'bin/'
         ext: ".js"
       compile_client:
         options:
           bare: true
         expand: true
-        flatten: true 
-        cwd: "./"
-        src: ["src/client/*.coffee"]
+        flatten: true
+        cwd: "./src/client"
+        src: ["*.coffee"]
         dest: "js/"
         ext: ".js"
     clean:
       js: ["bin/*.js", "js/*.js"]
     watch:
       coffee_server:
-        files: ["index.coffee"]
+        files: ["src/server/**/*.coffee"]
         tasks: ["coffee:compile_server"]
       coffee_client:
-        files: ["src/*.coffee"]
+        files: ["src/client/*.coffee"]
         tasks: ["coffee:compile_client"]
     supervisor:
       target:

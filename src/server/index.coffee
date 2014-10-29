@@ -4,6 +4,7 @@ http = require("http").Server app
 io = require("socket.io")(http)
 path = require "path"
 fs = require "fs"
+Student = require("./models").student
 
 basedir = path.resolve "#{__dirname}/../"
 config = JSON.parse fs.readFileSync("#{basedir}/config.json")
@@ -17,18 +18,6 @@ app.get "/", (req, res) ->
 
 app.get "/admin", (req, res) ->
   res.sendFile "#{basedir}/templates/admin.html"
-
-
-
-class Student
-  constructor: (@user, @socket) ->
-    @state = 0
-
-  toJSON: () ->
-    {
-      user: @user
-      state: @state
-    }
 
 users = {}
 
