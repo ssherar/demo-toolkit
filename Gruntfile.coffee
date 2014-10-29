@@ -57,7 +57,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-mocha-test'
 
   grunt.registerTask 'compile', ['coffee']
-  grunt.registerTask 'default', ['concurrent:autoreload']
-  grunt.registerTask 'test', ['mochaTest']
+  grunt.registerTask 'default', ['coffee', 'concurrent:autoreload']
+  grunt.registerTask 'test', ['coffee', 'mochaTest']
   grunt.registerTask 'travis', ['coffee', 'mochaTest']
   null
