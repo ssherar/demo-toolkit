@@ -1,6 +1,6 @@
 Student = require("./models").student
 
-module.exports = (adminSocket, studentSocket, users) ->
+module.exports = (adminSocket, studentSocket, users, config) ->
   studentSocket.on "connection", (socket) ->
     console.log "user connected"
     socket.authenticated = false

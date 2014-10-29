@@ -23,8 +23,8 @@ users = {}
 admin = io.of "/admin"
 students = io.of "/students"
 
-require("./admin")(admin, students, users)
-require("./students")(admin, students, users)
+require("./admin")(admin, students, users, config)
+require("./students")(admin, students, users, config)
 
 http.listen config.port, () ->
   console.log("Listening on *:#{config.port}")
