@@ -8,7 +8,7 @@ module.exports = (grunt) ->
         expand: true
         flatten: true
         cwd: "./"
-        src: ["./index.coffee"]
+        src: ["src/server/index.coffee"]
         dest: 'bin/'
         ext: ".js"
       compile_client:
