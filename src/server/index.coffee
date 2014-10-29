@@ -27,17 +27,7 @@ findIdForUsername = (username) ->
 admin = io.of "/admin"
 students = io.of "/students"
 
-admin.on "connection", (socket) ->
-  console.log "admin connected"
-  for key,value of users
-    admin.emit "user connected", value
-
-  socket.on "user signedoff", (username) ->
-    socketid = findIdForUsername username
-    user = users[socketid]
-    user.state = 0
-    user.socket.emit "user signedoff", true
-
+require("./admin")(admin, students, users)
 
 students.on "connection", (socket) ->
   console.log "user connected"
