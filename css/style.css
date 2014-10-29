@@ -130,7 +130,7 @@ button:disabled {
 .center-cont {
   margin-right: auto;
   margin-left: auto;
-  width: 335px;
+  width: 465px;
 }
 
 #main-page {
@@ -142,7 +142,7 @@ button:disabled {
 
 #aber-username {
   text-align: center;
-  width: 250px;
+  width: 300px;
 }
 
 #signoff {
@@ -152,5 +152,13 @@ button:disabled {
 }
 
 #main {
+  padding-top: 15%;
+}
+
+#username-submit {
+  width: 160px;
+}
+
+#admin-authenticate {
   padding-top: 15%;
 }
