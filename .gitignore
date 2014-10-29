@@ -19,3 +19,7 @@ bin
 
 # Client dependencies
 bower_components
+
+# Compiled config files
+config.json
+

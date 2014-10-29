@@ -10,8 +10,9 @@ $ () ->
 
   $usernameSubmit.on "click", () ->
     socket.emit "user added", $username.val()
-    $entryPage.addClass "hidden"
-    $mainPage.removeClass "hidden"
+    socket.on "user authenticated", (ret) ->
+      $entryPage.addClass "hidden"
+      $mainPage.removeClass "hidden"
 
   $signoffButton.on "click", () ->
     socket.emit "signoff requested", "true"

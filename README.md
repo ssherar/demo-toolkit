@@ -1,5 +1,6 @@
 Demonstrator's Toolkit (DTK)
 ======================
+[![Build Status](https://travis-ci.org/ssherar/demo-toolkit.svg?branch=master)](https://travis-ci.org/ssherar/demo-toolkit)
 
 A toolkit to aide demonstrators at Aberystwyth University's CompSci department queue amongst other cool tools
 
@@ -17,6 +18,7 @@ DTK is written in coffeescript and runs on node, so there are numerous dependanc
     sudo npm install -g grunt-cli coffee-script
     bower install
     npm install
+    cp config.json.example config.json
     grunt coffee
   
 To run in development mode:
@@ -27,6 +29,21 @@ To compile coffee down to JS:
 
     grunt coffee
   
+To run the test suite, use:
+    
+    grunt test
+
+
+Configuation file
+-----------------
+Currently you are very limited to what you can edit within the config file - however the main philosophy behind this application is one simple config file - so expect it to increase!
+
+|Key            |Default Value  |Description                        |
+|---------------|---------------|-----------------------------------|
+|port           | `3000`        | Port the application listens on
+|adminURL       | `/admin`     | Endpoint for admin interface
+|adminPassword  | `password`    | Generic password to get to `/admin`
+
 
 Contribution
 ------------
