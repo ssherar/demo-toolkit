@@ -21,9 +21,6 @@ app.get "/admin", (req, res) ->
 
 users = {}
 
-findIdForUsername = (username) ->
-  (id for id,value of users when value.user == username )[0]
-
 admin = io.of "/admin"
 students = io.of "/students"
 
