@@ -1,4 +1,5 @@
 Student = require("./models").student
+utils = require "./utils"
 
 module.exports = (adminSocket, studentSocket, users, config) ->
   studentSocket.on "connection", (socket) ->
@@ -12,6 +13,7 @@ module.exports = (adminSocket, studentSocket, users, config) ->
         delete users[socket.id]
 
     socket.on "user added", (username) ->
+      return unless utils.findIdForUsername(username, users) == undefined
       console.log "user added: #{username}"
       socket.authenticated = true
       tmp = new Student username, socket
