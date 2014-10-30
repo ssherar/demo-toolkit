@@ -1,30 +1,79 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Demonstrator Toolkit</title>
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
-    <script src="/static/socket.io-client/socket.io.js"></script>
-    <script src="/static/jquery/dist/jquery.min.js"></script>
-  </head>
-  <body>
-  <div class="page" id="admin-authenticate">
-    <div class="center width-50">
-      <input type="password" id="admin-password" placeholder="Password for admin" class="width-70 spread">
-      <button id="password-submit" class="width-30 spread">Enter</button>
-    </div>
-  </div>
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
 
-  <div class="page hidden" id="list-users">
-    <div class="width-column-third">
-      <h1>Connected Users</h1>
-      <ul id="connected-users"></ul>
-    </div>
+        <title>Demonstrator Toolkit</title>
 
-    <div class="width-column-third">
-      <h1>Users waiting for sign off</h1>
-      <ol id="signoff-users"></ol>
-    </div>
-  </div>
-  <script src="/js/admin.js"></script>
-  </body>
+        <link rel="stylesheet" href="/static/pure/pure.css">
+
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" href="/css/side-menu-old-ie.css">
+        <![endif]-->
+        <!--[if gt IE 8]><!-->
+            <link rel="stylesheet" href="/css/side-menu.css">
+        <!--<![endif]-->
+
+        <link rel="stylesheet" href="/css/style.css">
+
+        <script src="/static/socket.io-client/socket.io.js"></script>
+        <script src="/static/jquery/dist/jquery.min.js"></script>
+
+    </head>
+    <body>
+
+        <div id="layout">
+    
+            <!-- Menu toggle -->
+            <a href="#menu" id="menuLink" class="menu-link">
+                <!-- Hamburger icon -->
+                <span></span>
+            </a>
+
+            <div class="page" id="admin-authenticate">
+                <div class="content">
+                    <div id="entry-page">
+                        <div class="center-cont">
+                            <div class="pure-form">
+                                <input type="password" id="admin-password" placeholder="Password for admin" require>
+                                <button id="password-submit" class="pure-button pure-button-primary">Enter</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page hidden" id="list-users">
+
+                <div id="menu">
+                    <div class="pure-menu pure-menu-open">
+                        <p class="pure-menu-heading">Queue</p>
+
+                        <ul class="userlist" id="connected-users"></ul>
+                    </div>
+                </div>
+
+                <div id="main">
+                    <div class="header">
+                        <h1>Aberystwyth University</h1>
+                        <h2>Demonstrator Toolkit - Admin</h2>
+                    </div>
+
+                    <div class="content">
+                        <div id="entry-page">
+                            <div class="center-cont">
+                                <h1>Users waiting for sign off</h1>
+                                <ol id="signoff-users"></ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="/js/admin.js"></script>
+
+    </body>
 </html>
