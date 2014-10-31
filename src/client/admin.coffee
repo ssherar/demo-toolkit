@@ -43,3 +43,8 @@ $ () ->
     $ele = users[username]
     $ele.detach()
     $ele.appendTo $signoffUsers
+
+  socket.on "admin signedoff user", (username) ->
+    $ele = users[username]
+    $ele.detach()
+    $ele.appendTo $connectedUsers
