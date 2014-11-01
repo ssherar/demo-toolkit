@@ -18,8 +18,12 @@ module.exports = (adminSocket, studentSocket, users, config) ->
       socket.authenticated = true
       tmp = new Student username, socket
       users[socket.id] = tmp
-      adminSocket.emit "user connected", tmp.toJSON()
-      socket.emit "user authenticated", true
+      socket.emit "user authenticated", config.defaultRooms
+
+    socket.on "joined room", (room) ->
+      socket.join(room)
+      users[socket.id].room = room
+      adminSocket.emit "user connected", users[socket.id].toJSON()
 
     socket.on "signoff requested", () ->
       userObj = users[socket.id]

@@ -1,7 +1,7 @@
 class Student
   constructor: (@user, @socket) ->
     @state = 0
-    @room = "CS101"
+    @room = null
 
   toJSON: () ->
     {

@@ -111,6 +111,7 @@ button:disabled {
   float:left
 }
 
-#rooms > button {
+#rooms > button,
+#choices > button {
   width:18.5%;
 }
