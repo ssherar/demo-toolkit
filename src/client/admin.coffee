@@ -1,14 +1,17 @@
 $ () ->
   socket = io "/admin"
   users = {}
+  rooms = {}
   
   $pageAuthentication = $ "div#admin-authenticate"
   $pageUsers = $ "div#list-users"
+  $manageRooms = $ "div#manage-rooms"
 
   $adminPassword = $ "input#admin-password"
   $passwordSubmit = $ "button#password-submit"
   $connectedUsers = $ "ul#connected-users"
   $signoffUsers = $ "ol#signoff-users"
+  $roomList = $ "div#rooms"
 
   moveUser = (event) ->
     $ele = $ event.target
@@ -21,7 +24,8 @@ $ () ->
     socket.on "admin authenticated", (ret) ->
       return unless ret == true
       $pageAuthentication.addClass "hidden"
-      $pageUsers.removeClass "hidden"
+      #$pageUsers.removeClass "hidden"
+      $manageRooms.removeClass "hidden"
 
     socket.emit "logging in", $adminPassword.val()
 
@@ -33,6 +37,19 @@ $ () ->
       when 0 then $ele.appendTo $connectedUsers
       when 1 then $ele.appendTo $signoffUsers
     null
+
+  socket.on "show rooms", (roomArray) ->
+    for room in roomArray
+      $tmp = $ "<button>"
+      $tmp.on "click", (event) ->
+        $ele = $ event.target
+        room = $ele.text()
+        socket.emit "change room", room
+        $manageRooms.addClass "hidden"
+        $pageUsers.removeClass "hidden"
+      $tmp.html room
+      $tmp.appendTo $roomList
+      rooms[room] = $tmp
 
   socket.on "user disconnected", (userObj) ->
     users[userObj.user].remove()

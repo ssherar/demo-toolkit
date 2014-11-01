@@ -3,6 +3,8 @@ utils = require "./utils"
 module.exports = (adminSocket, studentSocket, users, config) ->
   adminSocket.on "connection", (socket) ->
     console.log "admin connected"
+    socket.emit "show rooms", config.defaultRooms
+
     for key,value of users
       adminSocket.emit "user connected", value
 
