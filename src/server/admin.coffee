@@ -1,12 +1,15 @@
 utils = require "./utils"
+Student = require("./models").student
 
 module.exports = (adminSocket, studentSocket, users, config) ->
   adminSocket.on "connection", (socket) ->
     console.log "admin connected"
     socket.emit "show rooms", config.defaultRooms
-
-    for key,value of users
-      adminSocket.emit "user connected", value
+    
+    socket.on "change room", (roomName) ->
+      for key,value of users
+        console.log value.room
+        adminSocket.emit("user connected", value) if value.room == roomName
 
     socket.on "user signedoff", (username) ->
       socketid = utils.findIdForUsername username, users

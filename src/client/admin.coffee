@@ -2,6 +2,7 @@ $ () ->
   socket = io "/admin"
   users = {}
   rooms = {}
+  currentRoom = null
   
   $pageAuthentication = $ "div#admin-authenticate"
   $pageUsers = $ "div#list-users"
@@ -30,6 +31,7 @@ $ () ->
     socket.emit "logging in", $adminPassword.val()
 
   socket.on "user connected", (userObj) ->
+    return unless currentRoom == userObj.room
     $ele = $("<li>").html userObj.user
     $ele.on "click", moveUser
     users[userObj.user] = $ele
@@ -47,11 +49,13 @@ $ () ->
         socket.emit "change room", room
         $manageRooms.addClass "hidden"
         $pageUsers.removeClass "hidden"
+        currentRoom = room
       $tmp.html room
       $tmp.appendTo $roomList
       rooms[room] = $tmp
 
   socket.on "user disconnected", (userObj) ->
+    return unless currentRoom == userObj.room
     users[userObj.user].remove()
     delete users[userObj.user]
     null
