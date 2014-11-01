@@ -12,6 +12,7 @@ $ () ->
   $passwordSubmit = $ "button#password-submit"
   $connectedUsers = $ "ul#connected-users"
   $signoffUsers = $ "ol#signoff-users"
+  $backButton = $ "button#nav-back"
   $roomList = $ "div#rooms"
 
   moveUser = (event) ->
@@ -69,3 +70,10 @@ $ () ->
     $ele = users[username]
     $ele.detach()
     $ele.appendTo $connectedUsers
+
+  $backButton.on "click", (event) ->
+    for user,$ele of users
+      $ele.remove()
+      delete users[user]
+    $pageUsers.addClass "hidden"
+    $manageRooms.removeClass "hidden"

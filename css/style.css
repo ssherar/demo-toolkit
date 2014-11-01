@@ -115,3 +115,9 @@ button:disabled {
 #choices > button {
   width:18.5%;
 }
+
+.bottom-right {
+  position:absolute;
+  bottom:0;
+  right:0;
+}
