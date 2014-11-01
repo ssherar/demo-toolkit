@@ -8,7 +8,6 @@ module.exports = (adminSocket, studentSocket, users, config) ->
     
     socket.on "change room", (roomName) ->
       for key,value of users
-        console.log value.room
         adminSocket.emit("user connected", value) if value.room == roomName
 
     socket.on "user signedoff", (username) ->
