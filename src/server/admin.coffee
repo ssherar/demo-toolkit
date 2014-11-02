@@ -11,6 +11,10 @@ module.exports = (adminSocket, studentSocket, users, config) ->
       socket.join(roomName)
       for key,value of users
         socket.emit("user connected", value) if value.room == roomName
+    
+    socket.on "leave room", (roomName) ->
+      utils.log "admin", "admin #{socket.id} leaving room #{roomName}"
+      socket.leave(roomName)
 
     socket.on "user signedoff", (userObj) ->
       utils.log "admin", "admin #{socket.id} signing off user #{userObj}"

@@ -78,5 +78,7 @@ $ () ->
     for user,$ele of users
       $ele.remove()
       delete users[user]
+    socket.emit "leave room", currentRoom
+    currentRoom = null
     $pageUsers.addClass "hidden"
     $manageRooms.removeClass "hidden"
