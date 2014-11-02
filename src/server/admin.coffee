@@ -3,15 +3,17 @@ Student = require("./models").student
 
 module.exports = (adminSocket, studentSocket, users, config) ->
   adminSocket.on "connection", (socket) ->
-    console.log "admin connected"
+    utils.log "admin", "admin connected #{socket.id}"
     socket.emit "show rooms", config.defaultRooms
     
     socket.on "change room", (roomName) ->
+      utils.log "admin", "admin #{socket.id} moving to #{roomName}"
       socket.join(roomName)
       for key,value of users
-        adminSocket.emit("user connected", value) if value.room == roomName
+        socket.emit("user connected", value) if value.room == roomName
 
     socket.on "user signedoff", (userObj) ->
+      utils.log "admin", "admin #{socket.id} signing off user #{userObj}"
       socketid = utils.findIdForUsername userObj.user, users
       user = users[socketid]
       user.state = 0
@@ -19,4 +21,5 @@ module.exports = (adminSocket, studentSocket, users, config) ->
       socket.broadcast.to(userObj.room).emit "admin signedoff user", userObj.user
     
     socket.on "logging in", (password) ->
-      adminSocket.emit "admin authenticated", config.adminPassword == password
+      utils.log "admin", "admin #{socket.id} attempting to authenticate"
+      socket.emit "admin authenticated", config.adminPassword == password
