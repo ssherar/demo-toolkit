@@ -20,7 +20,10 @@ $ () ->
     return unless $ele.parent().is $signoffUsers
     $ele.detach()
     $ele.appendTo $connectedUsers
-    socket.emit "user signedoff", $ele.text()
+    retVal =
+      user: $ele.text()
+      room: currentRoom
+    socket.emit "user signedoff", retVal
 
   $passwordSubmit.on "click", () ->
     socket.on "admin authenticated", (ret) ->
