@@ -32,7 +32,7 @@ describe "index.coffee", () ->
     name = "sbs1"
 
     socket.on "user authenticated", (ret) ->
-      expect(ret).equal(true)
+      expect(ret).to.be.a("Array")
       done()
 
     socket.emit "user added", name
